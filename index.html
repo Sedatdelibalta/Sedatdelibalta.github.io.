@@ -1,292 +1,381 @@
-{
-  "name": "Advanced Diploma of Information Technology",
-  "code": "ICT60115",
-  "units": [
-    {
-      "name": "Manage Copyright, Ethics and Privacy in an IT Environment",
-      "code": "ICTICT610",
-      "EPC": {
-        "1": {
-          "pc": {
-            "1.1": {
-              "text": "Review current Australian copyright law, and in particular its relationship to information and communications technology (ICT)"
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+</head>
+
+<style>
+  body {
+    background-color: #b5d449;
+  }
+
+  h3 {
+    color: red;
+    text-align: right;
+  }
+
+  h4 {
+    color: white;
+    text-align: left;
+  }
+
+  .logo {
+    background: #212529;
+    margin: -8px;
+    text-align: center;
+  }
+
+  .logo img {
+    margin: 5px;
+  }
+  li.unit input[type="checkbox"] {
+    float: left;
+  }
+  li.unit h3 {
+    float: right;
+  }
+  li.unit ul {
+    clear: both;
+  }
+
+  .modal {
+    width: 80%;
+    max-width: 100%;
+  }
+
+  ul.selected_units input {
+    display: none;
+  }
+
+  p.dotted {border-style: dotted;}
+  p.dashed {border-style: dashed;}
+  p.solid {border-style: solid;}
+  p.double {border-style: double;}
+  p.groove {border-style: groove;}
+  p.ridge {border-style: ridge;}
+  p.inset {border-style: inset;}
+  p.outset {border-style: outset;}
+  p.none {border-style: none;}
+  p.hidden {border-style: hidden;}
+  p.mix {border-style: dotted dashed solid double;}
+</style>
+
+
+<body>
+
+  <div class="logo">
+    <img src="logo.png" alt="Canterbury Techinical Institute">
+  </div>
+
+  <p class="solid" id="demo2"></p>
+
+  <ul class=solid id="demo3"></ul>
+
+  <p id="demo4"></p>
+
+  <button class="open_modal">Submit selected Units</button>
+
+  <div id="ex1" class="modal">
+    <h1>Selected Units</h1>
+    <ul class="selected_units"></ul>
+  </div>
+
+
+  <script>
+
+    var myAllCourseTopics =
+    `{
+      "name": "Advanced Diploma of Information Technology",
+      "code": "ICT60115",
+      "units": [
+      {
+        "name": "Manage Copyright, Ethics and Privacy in an IT Environment",
+        "code": "ICTICT610",
+        "EPC": {
+          "1": {
+            "pc": {
+              "1.1": {
+                "text": "Review current Australian copyright law, and in particular its relationship to information and communications technology (ICT)"
+              },
+              "1.2": {
+                "text": "Ensure that team members are aware of Australian copyright law and how it affects their work"
+              },
+              "1.3": {
+                "text": "Institute measures to ensure that copyright is not breached"
+              },
+              "1.4": {
+                "text": "Institute regular reviews to ensure organisational copyright requirements are up to date and team members are adhering to these requirements"
+              },
+              "1.5": {
+                "text": "Distribute updated versions if required"
+              }
             },
-            "1.2": {
-              "text": "Ensure that team members are aware of Australian copyright law and how it affects their work"
-            },
-            "1.3": {
-              "text": "Institute measures to ensure that copyright is not breached"
-            },
-            "1.4": {
-              "text": "Institute regular reviews to ensure organisational copyright requirements are up to date and team members are adhering to these requirements"
-            },
-            "1.5": {
-              "text": "Distribute updated versions if required"
+            "name": "Manage adherence to copyright regulations"
+          },
+          "2": {
+            "name": "Manage ethical behaviour",
+            "pc": {
+              "2.1": {
+                "text": "Review appropriate code of ethics, both organisational and ICT specific"
+              },
+              "2.2": {
+                "text": "Acquaint team members with ethical requirements"
+              },
+              "2.3": {
+                "text": "Institute regular reviews of team members ethical work practices and feedback to ensure correct application of the code"
+              },
+              "2.4": {
+                "text": "Ensure that stakeholders are aware of ethics code, and adjust appropriately following stakeholder feedback"
+              },
+              "2.5": {
+                "text": "Institute regular reviews of stakeholder understanding and application of code of ethics"
+              },
+              "2.6": {
+                "text": "Establish a review and grievance procedure to enable confidential reporting of ethical issues"
+              },
+              "2.7": {
+                "text": "Institute regular reviews of code of ethics, updating and distributing as required"
+              }
             }
           },
-          "name": "Manage adherence to copyright regulations"
-        },
-        "2": {
-          "name": "Manage ethical behaviour",
-          "pc": {
-            "2.1": {
-              "text": "Review appropriate code of ethics, both organisational and ICT specific"
-            },
-            "2.2": {
-              "text": "Acquaint team members with ethical requirements"
-            },
-            "2.3": {
-              "text": "Institute regular reviews of team members ethical work practices and feedback to ensure correct application of the code"
-            },
-            "2.4": {
-              "text": "Ensure that stakeholders are aware of ethics code, and adjust appropriately following stakeholder feedback"
-            },
-            "2.5": {
-              "text": "Institute regular reviews of stakeholder understanding and application of code of ethics"
-            },
-            "2.6": {
-              "text": "Establish a review and grievance procedure to enable confidential reporting of ethical issues"
-            },
-            "2.7": {
-              "text": "Institute regular reviews of code of ethics, updating and distributing as required"
-            }
-          }
-        },
-        "3": {
-          "name": "Manage privacy",
-          "pc": {
-            "3.1": {
-              "text": "Institute a regular review of the relevance of legislation and standards to organisational outcomes, the organisation's privacy policy and procedures, and the work practices of team members with regard to these requirements"
-            },
-            "3.2": {
-              "text": "Determine and ensure the integrity, confidentiality, security and availability of information as required by the organisational policy"
-            },
-            "3.3": {
-              "text": "Ensure continued confidentiality and proprietary rights of stakeholders' interests"
-            },
-            "3.4": {
-              "text": "Contribute to the creation or updating of the organisation's privacy policy and procedures to align with privacy legislation"
-            },
-            "3.5": {
-              "text": "Distribute new or revised policy and procedures to stakeholders"
-            },
-            "3.6": {
-              "text": "Implement new work procedures and collect feedback from stakeholders"
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "Create cloud computing services",
-      "EPC": {
-        "1": {
-          "pc": {
-            "1.1": {
-              "text": "Gather requirements for the web service or cloud computing application"
-            },
-            "1.2": {
-              "text": "Determine the development environment and tools required to create web service or cloud computing application"
-            },
-            "1.3": {
-              "text": "Identify any possible big data applications"
-            },
-            "1.4": {
-              "text": "Define architecture and framework"
-            }
-          },
-          "name": "Design web service or cloud computing application"
-        },
-        "2": {
-          "name": "Build web service",
-          "pc": {
-            "2.1": {
-              "text": "Itemise required functionality"
-            },
-            "2.2": {
-              "text": "Build web service in the determined environment to meet required functionality"
-            }
-          }
-        },
-        "3": {
-          "name": "Build cloud computing application",
-          "pc": {
-            "3.1": {
-              "text": "Determine required functionality"
-            },
-            "3.2": {
-              "text": "Build cloud computing application in the determined environment to meet the required functionality"
-            }
-          }
-        },
-        "4": {
-          "name": "Test web service or cloud computing application",
-          "pc": {
-            "4.1": {
-              "text": "Test web service or cloud computing application for overall functionality according to requirements"
-            },
-            "4.2": {
-              "text": "Iterate design or build until test results meet requirements"
-            }
-          }
-        },
-        "5": {
-          "name": "Deploy web service or cloud computing application",
-          "pc": {
-            "5.1": {
-              "text": "Deploy web service or cloud computing application to the specified environment"
-            },
-            "5.2": {
-              "text": "Publish web service or cloud computing application to the specified environment"
+          "3": {
+            "name": "Manage privacy",
+            "pc": {
+              "3.1": {
+                "text": "Institute a regular review of the relevance of legislation and standards to organisational outcomes, the organisation's privacy policy and procedures, and the work practices of team members with regard to these requirements"
+              },
+              "3.2": {
+                "text": "Determine and ensure the integrity, confidentiality, security and availability of information as required by the organisational policy"
+              },
+              "3.3": {
+                "text": "Ensure continued confidentiality and proprietary rights of stakeholders' interests"
+              },
+              "3.4": {
+                "text": "Contribute to the creation or updating of the organisation's privacy policy and procedures to align with privacy legislation"
+              },
+              "3.5": {
+                "text": "Distribute new or revised policy and procedures to stakeholders"
+              },
+              "3.6": {
+                "text": "Implement new work procedures and collect feedback from stakeholders"
+              }
             }
           }
         }
       },
-      "code": "ICTPRG604"
-    },
-    {
-      "name": "Lead and manage team effectiveness",
-      "code": "BSBWOR502",
-      "EPC": {
-        "1": {
-          "name": "Establish team performance plan",
-          "pc": {
-            "1.1": {
-              "text": "Consult team members to establish a common understanding of team purpose, roles, responsibilities and accountabilities in accordance with organisational goals, plans and objectives"
+      {
+        "name": "Create cloud computing services",
+        "EPC": {
+          "1": {
+            "pc": {
+              "1.1": {
+                "text": "Gather requirements for the web service or cloud computing application"
+              },
+              "1.2": {
+                "text": "Determine the development environment and tools required to create web service or cloud computing application"
+              },
+              "1.3": {
+                "text": "Identify any possible big data applications"
+              },
+              "1.4": {
+                "text": "Define architecture and framework"
+              }
             },
-            "1.2": {
-              "text": "Develop performance plans to establish expected outcomes, outputs, key performance indicators (KPIs) and goals for work team"
-            },
-            "1.3": {
-              "text": "Support team members in meeting expected performance outcomes"
+            "name": "Design web service or cloud computing application"
+          },
+          "2": {
+            "name": "Build web service",
+            "pc": {
+              "2.1": {
+                "text": "Itemise required functionality"
+              },
+              "2.2": {
+                "text": "Build web service in the determined environment to meet required functionality"
+              }
+            }
+          },
+          "3": {
+            "name": "Build cloud computing application",
+            "pc": {
+              "3.1": {
+                "text": "Determine required functionality"
+              },
+              "3.2": {
+                "text": "Build cloud computing application in the determined environment to meet the required functionality"
+              }
+            }
+          },
+          "4": {
+            "name": "Test web service or cloud computing application",
+            "pc": {
+              "4.1": {
+                "text": "Test web service or cloud computing application for overall functionality according to requirements"
+              },
+              "4.2": {
+                "text": "Iterate design or build until test results meet requirements"
+              }
+            }
+          },
+          "5": {
+            "name": "Deploy web service or cloud computing application",
+            "pc": {
+              "5.1": {
+                "text": "Deploy web service or cloud computing application to the specified environment"
+              },
+              "5.2": {
+                "text": "Publish web service or cloud computing application to the specified environment"
+              }
             }
           }
         },
-        "2": {
-          "name": "Develop and facilitate team cohesion",
-          "pc": {
-            "2.1": {
-              "text": "Develop strategies to ensure team members have input into planning, decision making and operational aspects of work team"
-            },
-            "2.2": {
-              "text": "Develop policies and procedures to ensure team members take responsibility for own work and assist others to undertake required roles and responsibilities"
-            },
-            "2.3": {
-              "text": "Provide feedback to team members to encourage, value and reward individual and team efforts and contributions"
-            },
-            "2.4": {
-              "text": "Develop processes to ensure that issues, concerns and problems identified by team members are recognised and addressed"
+        "code": "ICTPRG604"
+      },
+      {
+        "name": "Lead and manage team effectiveness",
+        "code": "BSBWOR502",
+        "EPC": {
+          "1": {
+            "name": "Establish team performance plan",
+            "pc": {
+              "1.1": {
+                "text": "Consult team members to establish a common understanding of team purpose, roles, responsibilities and accountabilities in accordance with organisational goals, plans and objectives"
+              },
+              "1.2": {
+                "text": "Develop performance plans to establish expected outcomes, outputs, key performance indicators (KPIs) and goals for work team"
+              },
+              "1.3": {
+                "text": "Support team members in meeting expected performance outcomes"
+              }
             }
-          }
-        },
-        "3": {
-          "name": "Facilitate teamwork",
-          "pc": {
-            "3.1": {
-              "text": "Encourage team members and individuals to participate in and to take responsibility for team activities, including communication processes"
-            },
-            "3.2": {
-              "text": "Support the team in identifying and resolving work performance problems"
-            },
-            "3.3": {
-              "text": "Ensure own contribution to work team serves as a role model for others and enhances the organisation’s image for all stakeholders"
+          },
+          "2": {
+            "name": "Develop and facilitate team cohesion",
+            "pc": {
+              "2.1": {
+                "text": "Develop strategies to ensure team members have input into planning, decision making and operational aspects of work team"
+              },
+              "2.2": {
+                "text": "Develop policies and procedures to ensure team members take responsibility for own work and assist others to undertake required roles and responsibilities"
+              },
+              "2.3": {
+                "text": "Provide feedback to team members to encourage, value and reward individual and team efforts and contributions"
+              },
+              "2.4": {
+                "text": "Develop processes to ensure that issues, concerns and problems identified by team members are recognised and addressed"
+              }
             }
-          }
-        },
-        "4": {
-          "name": "Liase with stakeholders",
-          "pc": {
-            "4.1": {
-              "text": "Establish and maintain open communication processes with all stakeholders"
-            },
-            "4.2": {
-              "text": "Communicate information from line manager/management to the team"
-            },
-            "4.3": {
-              "text": "Communicate unresolved issues, concerns and problems raised by team members and follow-up with line manager/management and other relevant stakeholders"
-            },
-            "4.4": {
-              "text": "Evaluate and take necessary corrective action regarding unresolved issues, concerns and problems raised by internal or external stakeholders"
+          },
+          "3": {
+            "name": "Facilitate teamwork",
+            "pc": {
+              "3.1": {
+                "text": "Encourage team members and individuals to participate in and to take responsibility for team activities, including communication processes"
+              },
+              "3.2": {
+                "text": "Support the team in identifying and resolving work performance problems"
+              },
+              "3.3": {
+                "text": "Ensure own contribution to work team serves as a role model for others and enhances the organisation�s image for all stakeholders"
+              }
+            }
+          },
+          "4": {
+            "name": "Liase with stakeholders",
+            "pc": {
+              "4.1": {
+                "text": "Establish and maintain open communication processes with all stakeholders"
+              },
+              "4.2": {
+                "text": "Communicate information from line manager/management to the team"
+              },
+              "4.3": {
+                "text": "Communicate unresolved issues, concerns and problems raised by team members and follow-up with line manager/management and other relevant stakeholders"
+              },
+              "4.4": {
+                "text": "Evaluate and take necessary corrective action regarding unresolved issues, concerns and problems raised by internal or external stakeholders"
+              }
             }
           }
         }
-      }
-    },
-    {
-      "name": "Manage innovation and continuous improvement",
-      "code": "BSBMGT608",
-      "EPC": {
-        "1": {
-          "name": "Review programs, systems and processes",
-          "pc": {
-            "1.1": {
-              "text": "Establish strategies to monitor and evaluate performance and sustainability of key systems and processes"
-            },
-            "1.2": {
-              "text": "Undertake detailed analyses of supply chains, and operational, product and service delivery systems"
-            },
-            "1.3": {
-              "text": "Identify performance measures, and assessment tools and techniques, and evaluate their effectiveness"
-            },
-            "1.4": {
-              "text": "Analyse performance reports and variance from plans for key result areas of the organisation"
-            },
-            "1.5": {
-              "text": "Identify and analyse changing trends and opportunities relevant to the organisation"
-            },
-            "1.6": {
-              "text": "Seek advice from specialists, where appropriate, to identify technology and electronic commerce opportunities"
+      },
+      {
+        "name": "Manage innovation and continuous improvement",
+        "code": "BSBMGT608",
+        "EPC": {
+          "1": {
+            "name": "Review programs, systems and processes",
+            "pc": {
+              "1.1": {
+                "text": "Establish strategies to monitor and evaluate performance and sustainability of key systems and processes"
+              },
+              "1.2": {
+                "text": "Undertake detailed analyses of supply chains, and operational, product and service delivery systems"
+              },
+              "1.3": {
+                "text": "Identify performance measures, and assessment tools and techniques, and evaluate their effectiveness"
+              },
+              "1.4": {
+                "text": "Analyse performance reports and variance from plans for key result areas of the organisation"
+              },
+              "1.5": {
+                "text": "Identify and analyse changing trends and opportunities relevant to the organisation"
+              },
+              "1.6": {
+                "text": "Seek advice from specialists, where appropriate, to identify technology and electronic commerce opportunities"
+              }
             }
-          }
-        },
-        "2": {
-          "name": "Develop options for continuous improvement",
-          "pc": {
-            "2.1": {
-              "text": "Brief groups on performance improvement strategies and innovation as an essential element of competition"
-            },
-            "2.2": {
-              "text": "Foster creative climate and organisational learning by promoting interaction within and between work groups"
-            },
-            "2.3": {
-              "text": "Encourage, test and recognise new ideas and entrepreneurial behaviour where successful"
-            },
-            "2.4": {
-              "text": "Accept failure of an idea during trialling and recognise, celebrate and embed success into systems"
-            },
-            "2.5": {
-              "text": "Undertake risk management and cost-benefit analysis for each option or idea approved for trial"
-            },
-            "2.6": {
-              "text": "Approve innovations through agreed organisational processes"
+          },
+          "2": {
+            "name": "Develop options for continuous improvement",
+            "pc": {
+              "2.1": {
+                "text": "Brief groups on performance improvement strategies and innovation as an essential element of competition"
+              },
+              "2.2": {
+                "text": "Foster creative climate and organisational learning by promoting interaction within and between work groups"
+              },
+              "2.3": {
+                "text": "Encourage, test and recognise new ideas and entrepreneurial behaviour where successful"
+              },
+              "2.4": {
+                "text": "Accept failure of an idea during trialling and recognise, celebrate and embed success into systems"
+              },
+              "2.5": {
+                "text": "Undertake risk management and cost-benefit analysis for each option or idea approved for trial"
+              },
+              "2.6": {
+                "text": "Approve innovations through agreed organisational processes"
+              }
             }
-          }
-        },
-        "3": {
-          "name": "Implement innovative processes",
-          "pc": {
-            "3.1":{
-              "text": "Promote continuous improvement and sustainability as essential to doing business"
-            },
-            "3.2":{
-              "text": "Address the impact of change and consequences for people and implement transition plans"
-            },
-            "3.3":{
-              "text": "Ensure objectives, timeframes, measures and communication plans are in place to manage implementation"
-            },
-            "3.4":{
-              "text": "Implement contingency plans in the event of non-performance"
-            },
-            "3.5":{
-              "text": "Follow up failure by prompt investigation and analysis of causes and manage emerging challenges and opportunities effectively"
-            },
-            "3.6":{
-              "text": "Ensure that learnings from activities are captured and managed to inform future work"
-            },
-            "3.7":{
-              "text": "Regularly evaluate continuous improvement systems and processes"
-            },
-            "3.8":{"text": "Communicate costs and benefits of innovations and improvements to relevant groups and individuals"
+          },
+          "3": {
+            "name": "Implement innovative processes",
+            "pc": {
+              "3.1":{
+                "text": "Promote continuous improvement and sustainability as essential to doing business"
+              },
+              "3.2":{
+                "text": "Address the impact of change and consequences for people and implement transition plans"
+              },
+              "3.3":{
+                "text": "Ensure objectives, timeframes, measures and communication plans are in place to manage implementation"
+              },
+              "3.4":{
+                "text": "Implement contingency plans in the event of non-performance"
+              },
+              "3.5":{
+                "text": "Follow up failure by prompt investigation and analysis of causes and manage emerging challenges and opportunities effectively"
+              },
+              "3.6":{
+                "text": "Ensure that learnings from activities are captured and managed to inform future work"
+              },
+              "3.7":{
+                "text": "Regularly evaluate continuous improvement systems and processes"
+              },
+              "3.8":{"text": "Communicate costs and benefits of innovations and improvements to relevant groups and individuals"
             }
           }
         }
@@ -452,10 +541,10 @@
               "text": "Identify the strategic and operational needs of the project during the planning phase"
             },
             "1.2": {
-              "text": "Identify and consider the project’s strategic context and requirements"
+              "text": "Identify and consider the project�s strategic context and requirements"
             },
             "1.3": {
-              "text": "Identify and consider the organisation’s strategic and business plans, and its output requirements"
+              "text": "Identify and consider the organisation�s strategic and business plans, and its output requirements"
             },
             "1.4": {
               "text": "Identify and explore client requirements and the impact of legislation and industry codes and standards"
@@ -543,7 +632,7 @@
               "text": "Forward opportunities for future further developments following project completion for consideration by senior management"
             },
             "6.3": {
-              "text": "Consider the strategic impact of the project and feed into the organisation’s ongoing strategic planning processes"
+              "text": "Consider the strategic impact of the project and feed into the organisation�s ongoing strategic planning processes"
             }
           }
         }
@@ -768,7 +857,7 @@
               "text": "Rank opportunities in terms of their viability and applicability to the organisation"
             },
             "2.6": {
-              "text": "Include opportunities for innovation in the organisation’s business strategy and prioritise them for implementation"
+              "text": "Include opportunities for innovation in the organisation�s business strategy and prioritise them for implementation"
             }
           }
         },
@@ -776,7 +865,7 @@
           "name": "Implement innovation",
           "pc": {
             "3.1": {
-              "text": "Redesign aspects of the business in an innovative manner using online technologies according to the organisation’s business strategy"
+              "text": "Redesign aspects of the business in an innovative manner using online technologies according to the organisation�s business strategy"
             },
             "3.2": {
               "text": "Integrate innovation into the business and monitor to gauge usefulness and maximise implementation"
@@ -808,7 +897,7 @@
               "text": "Evaluate the effectiveness of existing procedures and systems in meeting the needs of clients, organisational aims, objectives, and standards"
             },
             "1.5": {
-              "text": "Identify the improvements in the organisation’s strategic use of knowledge, and prepare a cost-benefit analysis "
+              "text": "Identify the improvements in the organisation�s strategic use of knowledge, and prepare a cost-benefit analysis "
             }
           }
         },
@@ -836,7 +925,7 @@
               "text": "Develop a knowledge management strategy in consultation with staff for the capture and strategic use of organisational knowledge"
             },
             "3.2": {
-              "text": "Design business processes to support knowledge management, according to the organisation’s knowledge management strategy, and budget"
+              "text": "Design business processes to support knowledge management, according to the organisation�s knowledge management strategy, and budget"
             },
             "3.3": {
               "text": "Plan an executive support system as part of the knowledge management strategy, to improve managerial decision-making according to organisational requirements"
@@ -868,10 +957,10 @@
               "text": "Implement policy and procedures for capturing knowledge within the organisation according to the business knowledge management strategy, and integrate this knowledge into existing business processes to change the enterprise processes"
             },
             "1.3": {
-              "text": "Model methods of contributing to the organisation’s knowledge management system, and provide learning and development opportunities for staff to assist them to contribute and provide feedback"
+              "text": "Model methods of contributing to the organisation�s knowledge management system, and provide learning and development opportunities for staff to assist them to contribute and provide feedback"
             },
             "1.4": {
-              "text": "Provide coaching, mentoring and ongoing support to staff in accessing and using the organisation’s knowledge management system according to the business knowledge management strategy"
+              "text": "Provide coaching, mentoring and ongoing support to staff in accessing and using the organisation�s knowledge management system according to the business knowledge management strategy"
             },
             "1.5": {
               "text": "Manage protection and security of knowledge or information and levels of access according to organisational requirements"
@@ -885,7 +974,7 @@
               "text": "Monitor input procedures to ensure that sources are tapped and knowledge is captured according to the business knowledge management strategy, and to ensure the effectiveness of accurate data capture"
             },
             "2.2": {
-              "text": "Collect and analyse data on access and use of the knowledge management system to determine the organisation’s strategic use of knowledge"
+              "text": "Collect and analyse data on access and use of the knowledge management system to determine the organisation�s strategic use of knowledge"
             },
             "2.3": {
               "text": "Implement contingency measures to address shortfalls in the knowledge management system and procedures, according to level of responsibility and authority"
@@ -902,7 +991,7 @@
               "text": "Periodically review the organisational knowledge content for accuracy and currency to ensure that it remains in line wit organisational requirements"
             },
             "3.3": {
-              "text": "Identify improvements to the system and to the organisation’s strategic use of knowledge in consultation with users, and prepare a cost-benefit analysis with recommendations"
+              "text": "Identify improvements to the system and to the organisation�s strategic use of knowledge in consultation with users, and prepare a cost-benefit analysis with recommendations"
             }
           }
         }
@@ -947,7 +1036,7 @@
           "name": "Review, implement and document cloud security, privacy and compliance enhancements",
           "pc": {
             "3.1": {
-              "text": "Implement the appropriate changes, and integrate them into the current enterprise’s continuity of operation program (COOP)"
+              "text": "Implement the appropriate changes, and integrate them into the current enterprise�s continuity of operation program (COOP)"
             },
             "3.2": {
               "text": "Establish a performance measurement program, to evaluate the security effectiveness of implemented security controls"
@@ -970,7 +1059,7 @@
               "text": "Review the database design document, including the data structures, queries, reports and user interface"
             },
             "1.2": {
-              "text": "Identify any possible “Big Data” applications"
+              "text": "Identify any possible �Big Data� applications"
             },
             "1.3": {
               "text": "Compare the database access and security design, with the business security plan"
@@ -981,7 +1070,7 @@
           "name": "Identify the required data and sources",
           "pc": {
             "2.1": {
-              "text": "Identify the required data, with reference to the enterprise’s knowledge management strategy"
+              "text": "Identify the required data, with reference to the enterprise�s knowledge management strategy"
             },
             "2.2": {
               "text": "Identify subject areas, with reference to the business processes and the required data"
@@ -1001,7 +1090,7 @@
               "text": "Develop the warehouse targets, with reference to the business processes and the required data"
             },
             "3.2": {
-              "text": "Identify the warehouse agents, according to the system’s configuration"
+              "text": "Identify the warehouse agents, according to the system�s configuration"
             },
             "3.3": {
               "text": "Identify and develop, warehouse steps and processes"
@@ -1015,7 +1104,7 @@
               "text": "Design and develop the warehouse user interface, with reference to the principles of user interface design"
             },
             "4.2": {
-              "text": "Develop and implement the warehouse security strategy, according to the enterprise’s security plan"
+              "text": "Develop and implement the warehouse security strategy, according to the enterprise�s security plan"
             },
             "4.3": {
               "text": "Identify dimension tables and fact tables, with reference to the required data"
@@ -1024,7 +1113,7 @@
               "text": "Cost the technology requirements for the implementation of the warehouse security strategy, and include them in e-business budgeting"
             },
             "4.5": {
-              "text": "Develop a warehouse information catalogue, with reference to the enterprise’s knowledge management strategy"
+              "text": "Develop a warehouse information catalogue, with reference to the enterprise�s knowledge management strategy"
             }
           }
         },
@@ -1127,5 +1216,45 @@
         }
       }
     }
-  ]
-}
+    ]
+  }`;
+
+  var myObj2 = JSON.parse(myAllCourseTopics);
+  document.getElementById("demo2").innerHTML = myObj2.name;
+
+  for(var myObj3 in myObj2.units) {
+    //myObj2.units[myObj3].name
+
+    $('#demo3').append('<li id="unit' + myObj2.units[myObj3].code +'" class="unit"><input type="checkbox" name="selected_units" /><h3> ' + myObj2.units[myObj3].name + ' ' + myObj2.units[myObj3].code +'</h3><ul id="unit' + myObj2.units[myObj3].code +'-list"></ul> </li>');
+    for (var myObj4 in myObj2.units[myObj3].EPC) {
+      $('#unit' + myObj2.units[myObj3].code+'list').
+      append('<li id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 +'" class="sub-unit">' +myObj4 +' ' + myObj2.units[myObj3].EPC[myObj4].name +  '</li>');
+
+      $('#unit' + myObj2.units[myObj3].code + '-list').
+      append('<li class="sub-unit" id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc"><h4>' + myObj4 + ' ' + myObj2.units[myObj3].EPC[myObj4].name + '</h4><ul id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc-list"></ul></li>');
+      for (var myObj5 in myObj2.units[myObj3].EPC[myObj4].pc) {
+        $('#unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc-list').
+        append('<li class="lesson"> ' + myObj5  +' '+ myObj2.units[myObj3].EPC[myObj4].pc[myObj5].text + '</li>');
+      }
+    }
+  }
+
+  $('.open_modal').on('click', function() {
+    $('ul.selected_units').html("");
+    if ($('input[name="selected_units"]:checked').length == 0) {
+      alert('Please, select at least an unit');
+      return
+    } else {
+      $('input[name="selected_units"]:checked').each(function(idx, element) {
+        $('ul.selected_units').append($(element).parent().html());
+      });
+      $('#ex1').modal({
+        fadeDuration: 250,
+        fadeDelay: 0.80
+      });
+    }
+  });
+
+</script>
+</body>
+</html>

@@ -72,6 +72,11 @@
       width: 15px;
       height: 15px;
     }
+
+    textarea {
+      width: 100%;
+      display: inline-block;
+    }
   </style>
 </head>
 
@@ -83,7 +88,7 @@
     <img src="logo.png" alt="Canterbury Techinical Institute">
   </div>
 
-  <button type="button" class="import_json">Import JSON</button>
+  <a href="#ex2" rel="modal:open">Import JSON</a>
 
   <p class="solid" id="demo2"></p>
 
@@ -97,6 +102,12 @@
     <h1>Selected Units</h1>
     <ul class="selected_units"></ul>
     <button type="button" class="export_json">Export JSON</button>
+  </div>
+
+  <div id="ex2" class="modal">
+    <h1>Import JSON</h1>
+    <textarea type="text" class="input_json" rows="5"></textarea>
+    <button type="button" class="import_json">Import JSON</button>
   </div>
 
 
@@ -1235,26 +1246,32 @@
     ]
   }`;
 
-  var myObj2 = JSON.parse(myAllCourseTopics);
-  document.getElementById("demo2").innerHTML = myObj2.name;
-  $("#demo2").attr('data-course-code', myObj2.code);
+  function create_html(object) {
+    var myObj2 = object;
+    document.getElementById("demo2").innerHTML = myObj2.name;
+    $("#demo2").attr('data-course-code', myObj2.code);
 
-  for(var myObj3 in myObj2.units) {
-    //myObj2.units[myObj3].name
+    $('#demo3').html("");
 
-    $('#demo3').append('<li data-unit-id="' + myObj2.units[myObj3].code +'" class="unit container"><input type="checkbox" name="selected_units" /> <span class="checkmark"></span><h3 data> ' + myObj2.units[myObj3].name + ' ' + myObj2.units[myObj3].code +'</h3><ul data-subunit-id="'+myObj2.units[myObj3].code+'" id="unit' + myObj2.units[myObj3].code +'-list"></ul> </li>');
-    for (var myObj4 in myObj2.units[myObj3].EPC) {
-      $('#unit' + myObj2.units[myObj3].code+'list').
-      append('<li id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 +'" class="sub-unit">' +myObj4 +' ' + myObj2.units[myObj3].EPC[myObj4].name +  '</li>');
+    for(var myObj3 in myObj2.units) {
+      //myObj2.units[myObj3].name
 
-      $('#unit' + myObj2.units[myObj3].code + '-list').
-      append('<li class="sub-unit" id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc"><h4 data-unit-id="' + myObj4 + '">' + myObj4 + ' ' + myObj2.units[myObj3].EPC[myObj4].name + '</h4><ul id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc-list"></ul></li>');
-      for (var myObj5 in myObj2.units[myObj3].EPC[myObj4].pc) {
-        $('#unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc-list').
-        append('<li class="lesson"  data-class-id="' + myObj5 + '"> ' + myObj5  +' '+ myObj2.units[myObj3].EPC[myObj4].pc[myObj5].text + '</li>');
+      $('#demo3').append('<li data-unit-id="' + myObj2.units[myObj3].code +'" class="unit container"><input type="checkbox" name="selected_units" /> <span class="checkmark"></span><h3 data> ' + myObj2.units[myObj3].name + '</h3><ul data-subunit-id="'+myObj2.units[myObj3].code+'" id="unit' + myObj2.units[myObj3].code +'-list"></ul> </li>');
+      for (var myObj4 in myObj2.units[myObj3].EPC) {
+        $('#unit' + myObj2.units[myObj3].code+'list').
+        append('<li id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 +'" class="sub-unit"> ' + myObj2.units[myObj3].EPC[myObj4].name +  '</li>');
+
+        $('#unit' + myObj2.units[myObj3].code + '-list').
+        append('<li class="sub-unit" id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc"><h4 data-unit-id="' + myObj4 + '"> ' + myObj2.units[myObj3].EPC[myObj4].name + '</h4><ul id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc-list"></ul></li>');
+        for (var myObj5 in myObj2.units[myObj3].EPC[myObj4].pc) {
+          $('#unit-' + myObj2.units[myObj3].code + '-' + myObj4 + '-pc-list').
+          append('<li class="lesson"  data-class-id="' + myObj5 + '"> '+ myObj2.units[myObj3].EPC[myObj4].pc[myObj5].text + '</li>');
+        }
       }
     }
   }
+
+  create_html(JSON.parse(myAllCourseTopics));
 
   $('.open_modal').on('click', function() {
     $('ul.selected_units').html("");
@@ -1270,6 +1287,13 @@
         fadeDelay: 0.80
       });
     }
+  });
+
+  $('.import_json').on('click', function() {
+    var new_json= JSON.parse($('textarea').val());
+    create_html(new_json);
+    $('textarea').val("");
+    $.modal.close();
   });
 
   $('.export_json').on('click', function() {

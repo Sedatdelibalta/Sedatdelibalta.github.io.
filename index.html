@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-  <meta charset="utf-8">  
+  <meta charset="utf-8">
   <title>My page</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -11,51 +11,51 @@
     body {
       background-color: white;
     }
-  
+
     h3 {
       color: #1177d1;
       text-align: left;
     }
-  
+
     h4 {
       color: #0D0101!important;
       text-align: left;
     }
-  
+
     .logo {
       background: #212529;
       margin: -8px;
       text-align: center;
     }
-  
+
     ul {
       list-style: none;
     }
-  
+
     li.sub-unit ul {
       list-style: circle;
     }
-  
+
     .logo img {
       margin: 5px;
     }
-   
+
     li.unit h3 {
       display: inline-block;
     }
     li.unit ul {
       clear: both;
     }
-  
+
     .modal {
       width: 80%;
       max-width: 100%;
     }
-  
+
     ul.selected_units input {
       display: none;
     }
-  
+
     p.dotted {border-style: dotted;}
     p.dashed {border-style: dashed;}
     p.solid {border-style: solid;}
@@ -67,7 +67,7 @@
     p.none {border-style: none;}
     p.hidden {border-style: hidden;}
     p.mix {border-style: dotted dashed solid double;}
-  
+
     input[type="checkbox"] {
       width: 15px;
       height: 15px;
@@ -83,8 +83,7 @@
     <img src="logo.png" alt="Canterbury Techinical Institute">
   </div>
 
-  <h2>The Button Element</h2>
-<button type="button" class="save_json">Click Me!</button>
+  <button type="button" class="import_json">Import JSON</button>
 
   <p class="solid" id="demo2"></p>
 
@@ -97,6 +96,7 @@
   <div id="ex1" class="modal">
     <h1>Selected Units</h1>
     <ul class="selected_units"></ul>
+    <button type="button" class="export_json">Export JSON</button>
   </div>
 
 
@@ -1237,11 +1237,12 @@
 
   var myObj2 = JSON.parse(myAllCourseTopics);
   document.getElementById("demo2").innerHTML = myObj2.name;
+  $("#demo2").attr('data-course-code', myObj2.code);
 
   for(var myObj3 in myObj2.units) {
     //myObj2.units[myObj3].name
 
-    $('#demo3').append('<li id="unit' + myObj2.units[myObj3].code +'" class="unit container"><input type="checkbox" name="selected_units" /> <span class="checkmark"></span><h3> ' + myObj2.units[myObj3].name + ' ' + myObj2.units[myObj3].code +'</h3><ul id="unit' + myObj2.units[myObj3].code +'-list"></ul> </li>');
+    $('#demo3').append('<li data-unit-id="' + myObj2.units[myObj3].code +'" class="unit container"><input type="checkbox" name="selected_units" /> <span class="checkmark"></span><h3 data> ' + myObj2.units[myObj3].name + ' ' + myObj2.units[myObj3].code +'</h3><ul data-subunit-id="'+myObj2.units[myObj3].code+'" id="unit' + myObj2.units[myObj3].code +'-list"></ul> </li>');
     for (var myObj4 in myObj2.units[myObj3].EPC) {
       $('#unit' + myObj2.units[myObj3].code+'list').
       append('<li id="unit-' + myObj2.units[myObj3].code + '-' + myObj4 +'" class="sub-unit">' +myObj4 +' ' + myObj2.units[myObj3].EPC[myObj4].name +  '</li>');
@@ -1262,7 +1263,7 @@
       return
     } else {
       $('input[name="selected_units"]:checked').each(function(idx, element) {
-        $('ul.selected_units').append($(element).parent().html());
+        $('ul.selected_units').append($(element).parent().get(0).outerHTML);
       });
       $('#ex1').modal({
         fadeDuration: 250,
@@ -1271,41 +1272,41 @@
     }
   });
 
-  $('.save_json').on('click', function() {
+  $('.export_json').on('click', function() {
     var newJson = {};
-        newJson.name = $('#demo2').text();
-        //newJson.code = $('.course-code').text();
-        newJson.units = [];
+    newJson.name = $('#demo2').text();
+    newJson.code = $('#demo2').data('course-code');
+    newJson.units = [];
 
-        debugger;
+    $('ul.selected_units > li').each(function() {
+      var unit = {};
+      unit.name = $(this).find('h3').text();
+      unit.code = $(this).data('unit-id');
+      unit.EPC = {};
 
-        $('#demo3 li').each(function() {
-          var unit = {};
-          unit.name = $(this).find('h3').text();
-          //unit.code = $(this).find('.unitCode').text();
-          unit.EPC = {};
+      $(this).find('ul li.sub-unit').each(function(){
+        var h4Element = $(this).find('h4');
+        var subUnitId = h4Element.data('unit-id')
+        unit.EPC[subUnitId] = {};
+        unit.EPC[subUnitId].name = h4Element.text();
+        unit.EPC[subUnitId].pc = {};
 
-          $(this).find('ul li.sub-unit').each(function(){
-            var subUnitId = $(this).find('.subUnitId').text();
-            unit.EPC[subUnitId] = {};
-            unit.EPC[subUnitId].name = $(this).find('h4').text();
-            unit.EPC[subUnitId].pc = {};
+        $(this).find('ul li').each(function(idx, element) {
+          var lessonName = $(this).text(),
+              class_id = $(this).data('class-id');
 
-            $(this).find('ul li').each(function(idx, element) {
-              var lessonName = $(this).text();
-              unit.EPC[subUnitId].pc[idx] = {};
-              unit.EPC[subUnitId].pc[idx].text =lessonName;
-            });
-          });
-
-          newJson.units.push(unit);
+          unit.EPC[subUnitId].pc[class_id] = {};
+          unit.EPC[subUnitId].pc[class_id].text =lessonName;
         });
+      });
 
-        console.log(newJson);
+      newJson.units.push(unit);
+    });
+    alert(JSON.stringify(newJson));
   });
 
 
 </script>
- 
+
 </body>
 </html>
